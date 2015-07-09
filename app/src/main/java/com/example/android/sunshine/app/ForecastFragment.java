@@ -41,7 +41,8 @@ public class ForecastFragment extends Fragment {
     ArrayAdapter<String> mForecastAdapter;
     private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
     String[] weekForecast;
-    String forecastJsonStr = null;
+    private String forecastJsonStr = null;
+    private String forecastStr;
 
     public ForecastFragment() {
     }
@@ -58,11 +59,11 @@ public class ForecastFragment extends Fragment {
         forecastList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String forecast = mForecastAdapter.getItem(position);
+                forecastStr = mForecastAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra(Intent.EXTRA_TEXT, forecast);
+                intent.putExtra(Intent.EXTRA_TEXT, forecastStr);
                 startActivity(intent);
-                Toast.makeText(view.getContext(), forecast, Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), forecastStr, Toast.LENGTH_SHORT).show();
             }
         });
 
